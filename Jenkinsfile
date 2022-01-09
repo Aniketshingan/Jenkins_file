@@ -12,13 +12,13 @@ agent any
 					steps {
 							dir ("/mnt/git/"){
                                                                  /*  sh "rm -rf SCM SCM@tmp"  */
-							           sh "git clone https://github.com/Suraj-1204/SCM.git -b master"
+							           sh "git clone https://github.com/Aniketshingan/Jenkins_file.git -b master"
 							           sh "cp -r EC2-Linux.pem /mnt/git/SCM"
 							}
 							dir ("/mnt/git/SCM"){
-							           sh "scp -r -i EC2-Linux.pem indexa.html ec2-user@10.0.2.165:/var/www/html/"
+							           sh "scp -r -i EC2-Linux.pem indexa.html ec2-user@172.31.46.39:/var/www/html/"
 						
-							            sh "scp -r -i EC2-Linux.pem indexb.html ec2-user@10.0.3.225:/var/www/html/"
+							            sh "scp -r -i EC2-Linux.pem indexb.html ec2-user@172.31.10.169:/var/www/html/"
 							
 							}
 					      }
@@ -28,7 +28,7 @@ agent any
 			stage ('Slave-1') {
 			     agent {
 		              label {
-		                      label "Slave-1"
+		                      label "slave1"
 				                /* customWorkspace "/home/ec2-user/"  */
 		                    }
 		                } 
@@ -50,7 +50,7 @@ agent any
 			     agent {
 			
 			           label {
-				               label "Slave-2"
+				               label "slave2"
 					             /*customWorkspace "/home/ec2-user/"   */
 			                 }
 			              }
