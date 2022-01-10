@@ -17,8 +17,8 @@ agent any
 							dir ("/mnt/git/SCM"){
 							           sh "scp -r -i EC2-Linux.pem indexa.html ec2-user@172.31.46.39:/var/www/html/"
 						  sh "scp -r -i EC2-Linux.pem indexb.html ec2-user@172.31.10.169:/var/www/html/"
-							}  
-                              }
+					}  
+				   } }
        stage ('Slave-1') {
 			     agent {
 		              label {
