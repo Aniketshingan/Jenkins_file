@@ -2,14 +2,13 @@
 pipeline {
 agent any
 		stages {
-		
 		stage ('Jenkins-Master') {
 			    agent {
 		               label {
 		                       label "built-in"   
 		                     }     
 		                } 
-					steps {
+		                   steps {
 							dir ("/mnt/git/"){
                                                                  /*  sh "rm -rf SCM SCM@tmp"  */
 							           sh "git clone https://github.com/Aniketshingan/Jenkins_file.git -b main"
@@ -17,15 +16,10 @@ agent any
 							}
 							dir ("/mnt/git/SCM"){
 							           sh "scp -r -i EC2-Linux.pem indexa.html ec2-user@172.31.46.39:/var/www/html/"
-						
-							            sh "scp -r -i EC2-Linux.pem indexb.html ec2-user@172.31.10.169:/var/www/html/"
-							
-							}
-					      }
- 			    } 
-
-		
-			stage ('Slave-1') {
+						  sh "scp -r -i EC2-Linux.pem indexb.html ec2-user@172.31.10.169:/var/www/html/"
+							}  
+                              }
+       stage ('Slave-1') {
 			     agent {
 		              label {
 		                      label "slave1"
@@ -33,18 +27,11 @@ agent any
 		                    }
 		                } 
 					steps {
-						
-						  sh "sudo chmod -R 777 /var/www/html"
-						
-						        sh "sudo mv /var/www/html/indexa.html /var/www/html/index.html"  
-						
-						
-						  sh "sudo service httpd start"
+						sh "sudo chmod -R 777 /var/www/html"
+					        sh "sudo mv /var/www/html/indexa.html /var/www/html/index.html"  
+						sh "sudo service httpd start"
 					    } 
-				
-					
-			       }
-				  }
+				 }
 			
 			stage ('Slave-2') {
 			     agent {
@@ -55,17 +42,11 @@ agent any
 			                 }
 			              }
 			      steps {
-				       
-						  sh "sudo chmod -R 777 /var/www/html"
-						
-						   sh "sudo mv /var/www/html/indexb.html /var/www/html/index.html"   
-					   
-				
-						    sh "sudo service httpd start"
+				       sh "sudo chmod -R 777 /var/www/html"
+						sh "sudo mv /var/www/html/indexb.html /var/www/html/index.html"   
+					  sh "sudo service httpd start"
 					    }
-				
-					 
-				    }
+				 }
 			}	  
-	
+	         }
  
