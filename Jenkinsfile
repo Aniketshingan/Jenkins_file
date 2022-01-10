@@ -12,7 +12,7 @@ agent any
 					steps {
 							dir ("/mnt/git/"){
                                                                  /*  sh "rm -rf SCM SCM@tmp"  */
-							           sh "git clone https://github.com/Aniketshingan/Jenkins_file.git -b master"
+							           sh "git clone https://github.com/Aniketshingan/Jenkins_file.git -b main"
 							           sh "cp -r EC2-Linux.pem /mnt/git/SCM"
 							}
 							dir ("/mnt/git/SCM"){
